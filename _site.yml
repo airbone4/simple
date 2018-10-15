@@ -5,5 +5,4 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "test"
-      href: c1.html
+
