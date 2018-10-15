@@ -23,3 +23,17 @@ body {
   font-weight: 400;
 }
 ```
+
+## 表格
+[表格建立](http://www.tablesgenerator.com/markdown_tables)  
+
+|height | weight  |
+|-------|---------|
+| 12    |   45    |
+
+
+## todo
+
+- [ ] Run `> npm-install` to install the project dependencies
+- [X] Install gulp.js via the Mac terminal or Gitbash on a PC `> npm install -g gulp`
+- [ ] Run the Gulp command `> gulp`
