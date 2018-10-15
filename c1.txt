@@ -1,0 +1,55 @@
+---
+title: "Untitled"
+author: "lin"
+date: "2018"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(shiny)
+```
+ 
+
+
+```{r eruptions, echo=FALSE}
+inputPanel(
+  selectInput("sTimes", label = "抽樣次數",
+              choices = c(500, 1000, 1500, 2000), selected = 1000),
+  numericInput("ssize", "抽樣大小?", 5),
+  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
+              min = 0.2, max = 2, value = 1, step = 0.2),
+  selectInput("dKind", label = "distribution",
+              choices = c('runif','rnorm'), selected = 'runif'),
+  selectInput("n_breaks", label = "Number of bins:",
+              choices = c(10, 20, 35, 50), selected = 20)  
+  
+)
+
+
+
+renderPlot({
+  if(is.na(input$ssize)){
+    i<-5
+  }
+
+N=as.numeric(input$sTimes )
+i=as.numeric(input$ssize)
+mu=0.5
+sigma=1/sqrt(12)
+data<-matrix(runif(i*N),ncol=i)
+rs<-rowSums(data)
+rs<-rs/i
+z<-(rs-mu)/(sigma/sqrt(i))
+hist(z,probability = TRUE,breaks = as.numeric(input$n_breaks),main="")
+lines(density(z,adjust = input$bw_adjust), col = 'red', lwd = 3)
+
+curve(dnorm(z), xname="z",col = 'blue', lwd = 3, lty = 3, add = T)
+rug(sample(z,100)) 
+mtext(paste0(c("size=","times="),c(i,N),collapse=', '),side=3)
+
+})
+```
+ 
+

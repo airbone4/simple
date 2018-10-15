@@ -1,0 +1,12 @@
+---
+title: "first"
+author: "lin"
+date: "2018年/10/14/"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## demo 
